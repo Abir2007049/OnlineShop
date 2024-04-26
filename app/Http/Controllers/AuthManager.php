@@ -36,7 +36,7 @@ class AuthManager extends Controller
         $credentials = $request->only('email','password');
         if(Auth::attempt($credentials))
         {
-            return redirect()->intended(route('home'));
+            return redirect()->intended(route('homepage'));
         }
         return redirect(route('login'))->with("error", "Login Details Are Not Valid");
     }
@@ -67,7 +67,8 @@ class AuthManager extends Controller
     {
         Session::flush();
         Auth::logout();
-        return redirect(route('login'));
+        //return redirect(route('homepage'));
+        return view('homepage');
 
     } 
 

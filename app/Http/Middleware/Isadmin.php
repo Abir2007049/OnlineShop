@@ -44,7 +44,7 @@ class Isadmin
 
             else if(Auth::attempt($credentials)  && Auth::user()->is_admin==0)
             {
-             return response()->view('home');
+             return response()->view('homepage');
             } 
             else 
             {
