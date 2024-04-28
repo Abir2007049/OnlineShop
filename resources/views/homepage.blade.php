@@ -47,8 +47,8 @@
         color: #555;
     }
 
-    /* Center the male section */
-    #male-section {
+    /* Center the section */
+    .section {
         text-align: center;
     }
 
@@ -85,49 +85,53 @@
     </div>
 </nav>
 
-
-
-
 <br><br><br>
 
-<div id="male-section">
+<div class="section">
     <h4>Female Section</h4>
     <div>
-        @foreach($femaleProducts  as $item)
+        @foreach($femaleProducts as $item)
+        <div style="border:3px; background=aquamarine">
         <h6>{{$item->Name}}</h6>
         <p>{{$item->Price}}</p>
         <p>{{$item->Code}}</p>
-       
-        
+        <!-- Add image display here -->
+        <img src="{{ asset($item->image) }}" alt="{{ $item->Name }}" style="height: 150px; width: auto;">
+        </div>
         @endforeach
-
-</div>
-  
+    </div>
 </div>
 
+<br><br><br>
 
+<div class="section">
+    <h4>Male Section</h4>
+    <div>
+        @foreach($products as $item)
+        <div>
+        <h6>{{$item->Name}}</h6>
+        <p>{{$item->Price}}</p>
+        <p>{{$item->Code}}</p>
+        <!-- Add image display here -->
+        <img src="{{ asset($item->image) }}" alt="{{ $item->Name }}" style="height: 150px; width: auto;">
+        </div>
+        @endforeach
+        
+    </div>
+</div>
 
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <div id="about" class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <div>
                 <h3>About Us</h3>
-                <P><b>Hello!Discover a new realm of online shopping!<br>
+                <P><b>Hello! Discover a new realm of online shopping!<br>
 To make your journey easier we have come to you with NARAAZ,<br>the biggest online market place in Bangladesh!</p>
             </div>
         </div>
     </div>
-</div>
-
-<div>
-
-
-
-
-
 </div>
 
 <div id="contact" class="container mt-5">
