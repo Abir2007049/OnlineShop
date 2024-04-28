@@ -25,11 +25,9 @@
                 <td>{{$user->Name}}</td>
                 <td>{{$user->Price}}</td>
                 <td>{{$user->Code}}</td>
-                <td><img src="uploads/Femproduct"  style="width:70px:height=70px;"></td>
-                <td>{{$user->image}}</td>
+                <td><img src="{{ asset($user->image) }}"  style="width:70px:height=70px;"></td>
                 
-                
-                
+               
             </tr>
             @endforeach
         </tbody>
