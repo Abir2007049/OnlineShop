@@ -64,6 +64,12 @@
                 </ul>
             </div>
         </nav>
+        <div>
+            <form action="{{ route('see.order') }}" method="GET" >
+                <button type="submit">Orders</button>
+            </form>
+        </div>
+        <br><br><br>
 
         <div class="row" id="male">
             <!-- Form for adding male products -->
@@ -91,7 +97,7 @@
                             </div>
                             <div class="btn-container">
                                 <button type="submit" class="btn btn-primary">Submit</button>
-                                <a href="http://127.0.0.1:8000/see.product">See</a>
+                                <a href="#see">See</a>
                             </div>
                         </form>
                     </div>

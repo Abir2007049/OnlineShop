@@ -12,6 +12,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use App\Models\Femproduct;
 use App\Models\Eproduct;
+use App\Models\Order;
 
 class AuthManager extends Controller
 {
@@ -162,4 +163,39 @@ class AuthManager extends Controller
         $femaleProducts = Femproduct::all();
         return view('homepage', compact('products', 'femaleProducts'));
     }
+    
+    public function storeOrder(Request $request)
+    {
+        // Retrieve data from the request
+        $productId = $request->input('Id');
+        $userEmail = $request->input('email');
+        $address= $request->input('address');
+        //$code= $request->input('Code');
+        // Find the user by email
+        //$user = User::where('email', $userEmail)->first();
+    
+        // Create a new order
+        $order = new Order();
+        $order->ProductId = $productId;
+        $order->Email = $userEmail;
+        $order->Address = $address; // Assuming you also want to store the product code
+        $order->save();
+    
+        // You might also want to return a response or redirect somewhere
+        //return redirect()->route('send.order')->with('success', 'Order placed successfully!');
+        $products = Product::all();
+        $femaleProducts = Femproduct::all();
+        
+        return view('homepage',compact('products','femaleProducts'));
+    }
+    function showOrder()
+    {
+        $data=Order::all();
+        return view('orders',compact('data'));
+
+    }
+
+
+
+    
 }

@@ -127,7 +127,11 @@
                 <p>Price:{{$item->Price}}</p>
                 <p>Code:{{$item->Code}}</p>
                 <!-- Adjusted image size -->
-                
+                <!-- <form action="{{ route('send.order') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="product_id" value="{{ $item->id }}">
+                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                </form> -->
             </div>
         </div>
         @endforeach
@@ -139,6 +143,18 @@
 <div id="male-section" class="section">
     <h4>Male Section</h4>
     <div class="row">
+        @guest
+        <p><b>Login to order</p>
+        @else
+        <h6>Fill up to order:</h6>
+        <form action="{{ route('send.order') }}" method="POST">
+                    @csrf
+                    <p>Address:</p><input name="address">
+                    <p>Email:</p><input name="email">
+                    <p>Id:</p><input  name="Id" >
+                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                </form>
+         @endguest       
         @foreach($products as $item)
         <div class="col-md-4">
             <div class="card male-card"> <!-- Added class "male-card" -->
@@ -154,7 +170,7 @@
     </div>
 </div>
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 <div id="about" class="container mt-5">
     <!-- About section content -->
@@ -182,5 +198,9 @@
         </div>
     </div>
 </div>
+
+<script>
+    // No JavaScript code needed for now
+</script>
 
 @endsection
