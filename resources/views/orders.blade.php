@@ -11,7 +11,7 @@
     <table class="table table-striped table-bordered">
         <thead class="table-primary">
             <tr>
-                <th scope="col">ProductId</th>
+                <th scope="col">ProductCode</th>
                 <th scope="col">Email</th>
                 <th scope="col">Address</th>
             </tr>
@@ -19,7 +19,7 @@
         <tbody>
             @foreach($data as $user)
             <tr>
-                <td>{{$user->ProductId}}</td>
+                <td>{{$user->ProductCode}}</td>
                 <td>{{$user->Email}}</td>
                 <td>{{$user->Address}}</td>
                 

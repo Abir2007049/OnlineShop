@@ -119,6 +119,18 @@
 <div id="female-section" class="section">
     <h4>Female Section</h4>
     <div class="row">
+    @guest
+        <p><b>Login to order</p>
+        @else
+        <h6>Fill up to order:</h6>
+        <form action="{{ route('send.order') }}" method="POST">
+                    @csrf
+                    <p>Address:</p><input name="address">
+                    <p>Email:</p><input name="email">
+                    <p>Code:</p><input  name="Code" >
+                    <button type="submit" class="btn btn-primary">Place Order</button>
+                </form>
+         @endguest        
         @foreach($femaleProducts as $item)
         <div class="col-md-4">
             <div class="card female-card"> <!-- Added class "female-card" -->
@@ -151,8 +163,8 @@
                     @csrf
                     <p>Address:</p><input name="address">
                     <p>Email:</p><input name="email">
-                    <p>Id:</p><input  name="Id" >
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                    <p>Code:</p><input  name="Code" >
+                    <button type="submit" class="btn btn-primary">Place Order</button>
                 </form>
          @endguest       
         @foreach($products as $item)

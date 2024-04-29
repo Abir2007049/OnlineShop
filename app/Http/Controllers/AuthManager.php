@@ -167,7 +167,7 @@ class AuthManager extends Controller
     public function storeOrder(Request $request)
     {
         // Retrieve data from the request
-        $productId = $request->input('Id');
+        $productCode = $request->input('Code');
         $userEmail = $request->input('email');
         $address= $request->input('address');
         //$code= $request->input('Code');
@@ -176,7 +176,7 @@ class AuthManager extends Controller
     
         // Create a new order
         $order = new Order();
-        $order->ProductId = $productId;
+        $order->ProductCode= $productCode;
         $order->Email = $userEmail;
         $order->Address = $address; // Assuming you also want to store the product code
         $order->save();
