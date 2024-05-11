@@ -35,3 +35,4 @@ Route::post('/send-eproduct', [AuthManager::class, 'storeEProduct'])->name('send
 Route::get('/', [AuthManager::class, 'getProd'])->name('home');
 Route::post('/send-orders', [AuthManager::class, 'storeOrder'])->name('send.order');
 Route::get('/see-orders', [AuthManager::class, 'showOrder'])->name('see.order');
+Route::get('/see-acc', [AuthManager::class, 'ShowUser'])->name('Show.Acc');

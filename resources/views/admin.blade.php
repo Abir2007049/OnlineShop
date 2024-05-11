@@ -61,14 +61,21 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#female">Female</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('Show.Acc') }}">Accounts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('see.order') }}">Orders</a>
+                    </li>
+                </ul>
+                <!-- Logout navigation bar -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('logout') }}">Logout</a>
+                    </li>
                 </ul>
             </div>
         </nav>
-        <div>
-            <form action="{{ route('see.order') }}" method="GET" >
-                <button type="submit">Orders</button>
-            </form>
-        </div>
         <br><br><br>
 
         <div class="row" id="male">
@@ -131,7 +138,6 @@
                             </div>
                             <div class="btn-container">
                                 <button type="submit" class="btn btn-primary">Submit</button>
-                                
                             </div>
                         </form>
                     </div>
@@ -141,60 +147,8 @@
 
         <!-- The rest of your HTML content -->
         <!-- Form for adding electronic products -->
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="card-title">Add Electronic Products</h3>
-                        <form action="{{ route('send.eproduct') }}" method="POST" enctype="multipart/form-data"> 
-                            @csrf <!-- Add CSRF token for security -->
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" name="name">
-                            </div>
-                            <div class="form-group">
-                                <label for="price">Price</label>
-                                <input type="number" class="form-control" id="price" name="price">
-                            </div>
-                            <div class="form-group">
-                                <label for="code">Code</label>
-                                <input type="text" class="form-control" id="code" name="code">
-                            </div>
-                            <div class="form-group">
-                                <label for="image">Image</label>
-                                <input type="file" class="form-control" id="image" name="image">
-                            </div>
-                            <div class="btn-container">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
 
-        <br><br>
-        <h1>User Accounts:</h1>
-        <table class="table mt-4">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($us as $user)
-                    @if($user->is_admin==0)
-                        <tr>
-                            <td>{{ $user->id }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                        </tr>
-                    @endif
-                @endforeach
-            </tbody>
-        </table>
     </div>
 </body>
 </html>

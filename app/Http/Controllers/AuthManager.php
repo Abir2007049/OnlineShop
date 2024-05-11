@@ -52,6 +52,7 @@ class AuthManager extends Controller
         if (!$user) {
             return redirect(route('registration'))->with("error", "Try Again!");
         }
+    
         return redirect(route('login'))->with("success", "Success! Try to Login");
     }
 
@@ -193,6 +194,12 @@ class AuthManager extends Controller
         $data=Order::all();
         return view('orders',compact('data'));
 
+    }
+
+    public function ShowUser(Request $request)
+    {
+       $acc=User::all();
+        return view('ShowAcc',compact('acc'));
     }
 
 
