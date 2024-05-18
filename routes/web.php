@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManager;
 use App\Http\Middleware\Isadmin;
 use App\Http\Middleware\ShowProducts;
+use App\Http\Controllers\SearchController;
 
  Route::get('/', function () {
     return view('homepage');
@@ -36,3 +37,7 @@ Route::get('/', [AuthManager::class, 'getProd'])->name('home');
 Route::post('/send-orders', [AuthManager::class, 'storeOrder'])->name('send.order');
 Route::get('/see-orders', [AuthManager::class, 'showOrder'])->name('see.order');
 Route::get('/see-acc', [AuthManager::class, 'ShowUser'])->name('Show.Acc');
+
+
+Route::get('/search', [SearchController::class, 'index'])->name('search.index');
+Route::post('/search', [SearchController::class, 'search'])->name('search.perform');

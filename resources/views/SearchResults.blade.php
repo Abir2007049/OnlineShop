@@ -110,9 +110,9 @@
 @endguest        
 
 <div id="female-section" class="section">
-    <h4>Female Section</h4>
+    <h4>Female Searched products</h4>
     <div class="row">
-        @foreach($femaleProducts as $item)
+        @foreach($searchFemProducts as $item)
             <div class="col-md-4">
                 <div class="card">
                     <h6>{{$item->Name}}</h6>
@@ -123,14 +123,14 @@
             </div>
         @endforeach
     </div>
-</div>
+</div> 
 
 <br><br><br>
 
 <div id="male-section" class="section">
-    <h4>Male Section</h4>
+    <h4>male Searched Products</h4>
     <div class="row">
-        @foreach($products as $item)
+        @foreach($searchProducts as $item)
             <div class="col-md-4">
                 <div class="card">
                     <h6>{{$item->Name}}</h6>
