@@ -51,7 +51,7 @@
 <body>
     <div class="container">
         <h1 class="mt-5 mb-4">ADMIN PANEL</h1>
-        <!-- Navigation bars for Male and Female sections -->
+        <!-- Navigation bars for Male, Female sections and Products dropdown -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
             <div class="container-fluid">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -60,6 +60,16 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#female">Female</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Products
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{ route('show.product') }}">Male Products</a></li>
+                            <li><a class="dropdown-item" href="{{ route('show.femproduct') }}">Female Products</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('Show.Acc') }}">Accounts</a>
@@ -146,9 +156,9 @@
         </div>
 
         <!-- The rest of your HTML content -->
-        <!-- Form for adding electronic products -->
-        
 
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

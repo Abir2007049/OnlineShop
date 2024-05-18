@@ -74,23 +74,28 @@ class AuthManager extends Controller
             'image' => 'image'
         ]);
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = $image->getClientOriginalName();
-            $image->move(public_path('male'), $imageName);
-            $imagePath = 'male/' . $imageName;
-        }
+        // if ($request->hasFile('image')) {
+        //     $image = $request->file('image');
+        //     $imageName = $image->getClientOriginalName();
+        //     $image->move(public_path('male'), $imageName);
+        //     $imagePath = 'male/' . $imageName;
+        // }
+
+        $imgLink = $request->file('image')->storeAs(
+            'public/male',
+            $request->image->getClientOriginalName());
+        $url = asset('storage/' . str_replace('public/', '', $imgLink));
 
         $product = new Product();
         $product->Name = $request->name;
         $product->Price = $request->price;
         $product->Code = $request->code;
-        $product->image = $imagePath ?? '';
+        $product->image = $url ?? '';
 
         $product->save();
 
         $products = Product::all();
-        return view('Products', ['us2' => $products]);
+        return response()->view('admin');
     }
 
     public function storeFemProduct(Request $request)
@@ -102,25 +107,29 @@ class AuthManager extends Controller
             'image' => 'required|mimes:png,jpg,jpeg'
         ]);
 
-        if ($request->has('image')) {
-            $file = $request->file('image');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extension;
-            $path = 'uploads/Femproduct';
-            $file->move($path, $filename);
-        }
+        // if ($request->has('image')) {
+        //     $file = $request->file('image');
+        //     $extension = $file->getClientOriginalExtension();
+        //     $filename = time() . '.' . $extension;
+        //     $path = 'uploads/Femproduct';
+        //     $file->move($path, $filename);
+        // }
+        $imgLink = $request->file('image')->storeAs(
+            'public/female',
+            $request->image->getClientOriginalName());
+        $url = asset('storage/' . str_replace('public/', '', $imgLink));
 
         $product = new Femproduct();
         $product->Name = $request->name;
         $product->Price = $request->price;
         $product->Code = $request->code;
-        $product->image = $path . $filename;
+        $product->image = $url ?? '';
 
         $product->save();
 
         $products = Femproduct::all();
 
-        return view('FemProducts', ['us2' => $products]);
+        return response()->view('admin');
     }
 
     public function storeEProduct(Request $request)
@@ -154,8 +163,13 @@ class AuthManager extends Controller
     }
 
     public function seeProduct()
+    { $Products=Product::all();
+        return view('Products', compact('Products',));
+    }
+    public function seeFemProduct()
     {
-        return view('Products');
+        $femaleProducts=Femproduct::all();
+        return view('FemProducts', compact('femaleProducts',));
     }
 
     public function getProd()

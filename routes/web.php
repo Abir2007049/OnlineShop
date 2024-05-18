@@ -31,6 +31,8 @@ Route::post('/send-product', [AuthManager::class, 'storeProduct'])->name('send.p
 Route::post('/send-femproduct', [AuthManager::class, 'storeFemProduct'])->name('send.femproduct');
 //Route::get('/send-product', [AuthManager::class, 'storeFemProduct'])->name('send.femproduct');
 Route::post('/send-eproduct', [AuthManager::class, 'storeEProduct'])->name('send.eproduct');
+Route::get('/showProd', [AuthManager::class, 'seeProduct'])->name('show.product');
+Route::get('/showProd2', [AuthManager::class, 'seeFemProduct'])->name('show.femproduct');
 //Route::get('/send-product', [AuthManager::class, 'storeEProduct'])->name('send.eproduct');
 //Route::get('/login', [AuthManager::class, 'login'])->name('login');
 Route::get('/', [AuthManager::class, 'getProd'])->name('home');

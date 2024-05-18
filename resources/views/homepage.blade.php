@@ -3,45 +3,58 @@
 @section('content')
 
 <style>
-    /* Background */
     body {
-        background-color: #343a40; /* Dark background */
-        color: #ffffff; /* White text color */
+        background-color: rgb(255, 234, 227);
+        color: black;
     }
 
     /* Navbar */
     .navbar {
-        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
-       
+        background-color: rgba(0, 0, 0, 0.5);
     }
 
     .navbar-nav .nav-link:hover {
-        color: #ffc107 !important; /* Yellow text on hover */
+        color: #ffc107 !important;
     }
 
     .navbar-nav .active > .nav-link {
-        color: #ffc107 !important; /* Yellow text for active link */
+        color: #ffc107 !important;
     }
 
     /* Forms */
     form {
-        background-color: orange; /* Vibrant purple background */
-        padding: 20px; /* Add padding */
-        border-radius: 10px; /* Rounded corners */
-        margin-bottom: 20px; /* Add space between forms */
-    }
-
-    /* Cards */
-    .card {
-        background-color:#9C00B7; /* Dark blue background for cards */
-        color: #ffffff; /* White text color */
-        padding: 15px;
+        background-color: rgb(255, 203, 203);
+        padding: 20px;
         border-radius: 10px;
         margin-bottom: 20px;
     }
 
+    /* Cards */
+    .card {
+        background-color: rgb(18, 20, 129);
+        color: #ffffff;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        transition: transform 0.3s ease;
+    }
+
     .card:hover {
-        transform: translateY(-5px); /* Move card 5px up on hover */
+        transform: translateY(-5px);
+    }
+
+    /* About and Contact Us Sections */
+    .section-container {
+        background: rgb(255, 177, 177);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .section-container:hover {
+        background-color: rgb(255, 150, 150);
+        transform: scale(1.02);
     }
 </style>
 
@@ -85,15 +98,17 @@
         </div>
     </div>
 </nav>
-<div style="align:center; color:orange">
-<h1>Naraaz</h1>
+
+<div style="text-align:center; color:rgb(18, 20, 129)">
+    <h1>Bostro Griho</h1>
 </div>
+
 <h1>Search</h1>
-    <form action="{{ route('search.perform') }}" method="POST">
-        @csrf
-        <input type="text" name="query" placeholder="Enter search term...">
-        <button type="submit">Search</button>
-    </form>
+<form action="{{ route('search.perform') }}" method="POST">
+    @csrf
+    <input type="text" name="query" placeholder="Enter search term...">
+    <button type="submit">Search</button>
+</form>
 
 <br><br><br>
 @guest
@@ -104,7 +119,7 @@
         @csrf
         <p>Address:</p><input name="address">
         <p>Email:</p><input name="email">
-        <p>Code:</p><input  name="Code" >
+        <p>Code:</p><input name="Code">
         <button type="submit" class="btn btn-primary">Place Order</button>
     </form>
 @endguest        
@@ -116,7 +131,7 @@
             <div class="col-md-4">
                 <div class="card">
                     <h6>{{$item->Name}}</h6>
-                    <img src="{{ asset($item->image) }}" alt="{{ $item->Name }}">
+                    <img src="{{ asset($item->Image) }}" alt="{{ $item->Name }}">
                     <p>Price:{{$item->Price}}</p>
                     <p>Code:{{$item->Code}}</p>
                 </div>
@@ -134,7 +149,8 @@
             <div class="col-md-4">
                 <div class="card">
                     <h6>{{$item->Name}}</h6>
-                    <img src="{{ asset($item->image) }}" alt="{{ $item->Name }}">
+                
+                    <img src="{{ $item->Image }}" alt="{{ $item->Name }}">
                     <p>Price:{{$item->Price}}</p>
                     <p>Code:{{$item->Code}}</p>
                 </div>
@@ -143,28 +159,23 @@
     </div>
 </div>
 
+
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-<div id="about" class="container mt-5" >
-    <!-- About section content -->
+<div id="about" class="container mt-5 section-container">
     <h3>About Us</h3>
     <p>Hello! Discover a new realm of online shopping!<br>
     To make your journey easier we have come to you with NARAAZ, the biggest online market place in Bangladesh!</p>
 </div>
 
-<div id="contact" class="container mt-5" style="color:black">
-    <!-- Contact section content -->
-    <div style="background: aquamarine; padding: 20px; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">
-        <h3 class="text-center"><img src="/.email.png" style="height:80px">Contact Us:</h3>
-        <p class="text-center">Email: abirjghs1877@gmail.com</p>
-        <p class="text-center">Cell: 01735828046</p>
-        <p class="text-center">Address: Lalan Shah Hall, KUET</p>
-    </div>
+<div id="contact" class="container mt-5 section-container">
+    <h3 class="text-center"><img src="{{ asset('/storage/email.png') }}" style="height:80px" alt="Email Icon"> Contact Us:</h3>
+    <p class="text-center">Email: abirjghs1877@gmail.com</p>
+    <p class="text-center">Cell: 01735828046</p>
+    <p class="text-center">Address: Lalan Shah Hall, KUET</p>
 </div>
 
-<!-- Add a link to track the URL -->
 <div class="container mt-5">
-    <!-- Link to track URL -->
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <a href="{{ route('home') }}" class="btn btn-primary">Go to home</a>
@@ -173,7 +184,7 @@
 </div>
 
 <script>
-    // No JavaScript code needed for now
+    
 </script>
 
 @endsection

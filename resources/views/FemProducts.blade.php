@@ -19,15 +19,19 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($us2 as $user)
+        @foreach($femaleProducts as $user)
             <tr>
                 <td>{{$user->id}}</td>
                 <td>{{$user->Name}}</td>
                 <td>{{$user->Price}}</td>
                 <td>{{$user->Code}}</td>
-                <td><img src="{{ asset($user->image) }}"  style="width:70px:height=70px;"></td>
-                
-                <td>{{$user->image}}</td>
+                <td>
+                    @if($user->image)
+                        <img src="{{  $user->image }}" style="width:70px; height:70px;">
+                    @else
+                        <span>No Image</span>
+                    @endif
+                </td>
             </tr>
             @endforeach
         </tbody>
