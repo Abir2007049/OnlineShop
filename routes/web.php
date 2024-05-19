@@ -5,6 +5,10 @@ use App\Http\Controllers\AuthManager;
 use App\Http\Middleware\Isadmin;
 use App\Http\Middleware\ShowProducts;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\OrderController;
+
+Route::post('/order/delivered/{id}', [OrderController::class, 'markAsDelivered'])->name('order.delivered');
+
 
  Route::get('/', function () {
     return view('homepage');

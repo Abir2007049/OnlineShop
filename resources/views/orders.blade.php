@@ -8,28 +8,37 @@
 </head>
 <body>
 <div class="container mt-4">
-    <table class="table table-striped table-bordered">
-        <thead class="table-primary">
-            <tr>
-                <th scope="col">ProductCode</th>
-                <th scope="col">Email</th>
-                <th scope="col">Address</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($data as $user)
-            <tr>
-                <td>{{$user->ProductCode}}</td>
-                <td>{{$user->Email}}</td>
-                <td>{{$user->Address}}</td>
-                
-                
-                
-                
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+<table class="table table-striped table-bordered">
+    <thead class="table-primary">
+        <tr>
+            <th scope="col">ProductCode</th>
+            <th scope="col">Email</th>
+            <th scope="col">Address</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($orders as $order)
+        <tr>
+            <td>{{ $order->ProductCode }}</td>
+            <td>{{ $order->Email }}</td>
+            <td>{{ $order->Address }}</td>
+            <td>
+                <button class="btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#order-{{ $order->id }}" aria-expanded="false" aria-controls="order-{{ $order->id }}">
+                    View Order
+                </button>
+                @if($order->delivery !== 'delivered')
+                <form action="{{ route('order.delivered', ['id' => $order->id]) }}" method="POST" style="display:inline;">
+                    @csrf
+                    <button type="submit" class="btn btn-success">Deliver</button>
+                </form>
+                @endif
+            </td>
+            <td>{{ $order->DeliveryStatus }}</td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+
 </div>
 </body>
 </html>

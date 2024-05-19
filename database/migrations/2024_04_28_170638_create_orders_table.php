@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('ProductCode');
           
             $table->string('Address');
+            $table->string('DeliveryStatus');
             $table->timestamps();
             
         });

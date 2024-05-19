@@ -56,11 +56,32 @@
         background-color: rgb(255, 150, 150);
         transform: scale(1.02);
     }
+
+    /* Footer */
+    footer {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+        margin-top: 30px;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+    }
+
+    footer a {
+        color: #ffc107;
+        text-decoration: none;
+    }
+
+    footer a:hover {
+        text-decoration: underline;
+    }
 </style>
 
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-        <a class="navbar-brand" style=" color:white" href="#">Home</a>
+        <a class="navbar-brand" style="color:white" href="#">Home</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
             aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -68,14 +89,14 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" style=" color:white" href="#about">About</a>
+                    <a class="nav-link active" aria-current="page" style="color:white" href="#about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style=" color:white" href="#contact">Contact</a>
+                    <a class="nav-link" style="color:white" href="#contact">Contact</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" style=" color:white" aria-expanded="false">
+                        data-bs-toggle="dropdown" style="color:white" aria-expanded="false">
                         Products
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -91,7 +112,7 @@
                     <span class="mx-2">|</span>
                     <a class="nav-link" href="{{ route('registration') }}" style="color:violet">Register</a>
                     @else
-                    <a class="nav-link" href="{{ route('logout') }}" style="color:red"><b>Logout</a>
+                    <a class="nav-link" href="{{ route('logout') }}" style="color:red"><b>Logout</b></a>
                     @endguest
                 </div>
             </span>
@@ -100,7 +121,7 @@
 </nav>
 
 <div style="text-align:center; color:rgb(18, 20, 129)">
-    <h1>Bostro Griho</h1>
+    <h1>বস্ত্রগৃহ</h1>
 </div>
 
 <h1>Search</h1>
@@ -149,7 +170,6 @@
             <div class="col-md-4">
                 <div class="card">
                     <h6>{{$item->Name}}</h6>
-                
                     <img src="{{ $item->Image }}" alt="{{ $item->Name }}">
                     <p>Price:{{$item->Price}}</p>
                     <p>Code:{{$item->Code}}</p>
@@ -159,13 +179,10 @@
     </div>
 </div>
 
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
 <div id="about" class="container mt-5 section-container">
     <h3>About Us</h3>
     <p>Hello! Discover a new realm of online shopping!<br>
-    To make your journey easier we have come to you with NARAAZ, the biggest online market place in Bangladesh!</p>
+    To make your journey easier we have come to you with Bostro Griho, the biggest online market place in Bangladesh!</p>
 </div>
 
 <div id="contact" class="container mt-5 section-container">
@@ -182,6 +199,10 @@
         </div>
     </div>
 </div>
+
+<footer>
+    <p>&copy; 2024 Bostro Griho(Abir-49,KUET CSE). All Rights Reserved.</p>
+</footer>
 
 <script>
     

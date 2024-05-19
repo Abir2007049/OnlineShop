@@ -99,8 +99,8 @@
     </div>
 </nav>
 
-<div style="text-align:center; color:orange">
-    <h1>Naraaz</h1>
+<div style="text-align:center; color:rgb(18, 20, 129)">
+    <h1>বস্ত্রগৃহ</h1>
 </div>
 
 <h1>Search</h1>
@@ -165,7 +165,7 @@
 <div id="about" class="container mt-5 section-container">
     <h3>About Us</h3>
     <p>Hello! Discover a new realm of online shopping!<br>
-    To make your journey easier we have come to you with NARAAZ, the biggest online market place in Bangladesh!</p>
+    To make your journey easier we have come to you with Bostro Griho, the biggest online market place in Bangladesh!</p>
 </div>
 
 <div id="contact" class="container mt-5 section-container">
@@ -182,6 +182,9 @@
         </div>
     </div>
 </div>
+<footer>
+    <p>&copy; 2024 Bostro Griho(Abir-49,KUET CSE). All Rights Reserved.</p>
+</footer>
 
 <script>
     // Add any additional JavaScript here

@@ -183,8 +183,12 @@ class AuthManager extends Controller
     {
         // Retrieve data from the request
         $productCode = $request->input('Code');
-        $userEmail = $request->input('email');
-        $address= $request->input('address');
+$userEmail = $request->input('email');
+$address = $request->input('address');
+$del = null;  // Set delivery to null initially
+
+// Your further processing logic here
+
         //$code= $request->input('Code');
         // Find the user by email
         //$user = User::where('email', $userEmail)->first();
@@ -194,6 +198,7 @@ class AuthManager extends Controller
         $order->ProductCode= $productCode;
         $order->Email = $userEmail;
         $order->Address = $address; // Assuming you also want to store the product code
+        $order->DeliveryStatus='Not Delivered';
         $order->save();
     
         // You might also want to return a response or redirect somewhere
@@ -205,14 +210,15 @@ class AuthManager extends Controller
     }
     function showOrder()
     {
-        $data=Order::all();
-        return view('orders',compact('data'));
+        $orders=Order::all();
+        return view('orders',compact('orders'));
 
     }
 
     public function ShowUser(Request $request)
     {
        $acc=User::all();
+     
         return view('ShowAcc',compact('acc'));
     }
 
