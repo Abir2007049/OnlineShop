@@ -23,9 +23,7 @@
             <td>{{ $order->Email }}</td>
             <td>{{ $order->Address }}</td>
             <td>
-                <button class="btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#order-{{ $order->id }}" aria-expanded="false" aria-controls="order-{{ $order->id }}">
-                    View Order
-                </button>
+               
                 @if($order->delivery !== 'delivered')
                 <form action="{{ route('order.delivered', ['id' => $order->id]) }}" method="POST" style="display:inline;">
                     @csrf
