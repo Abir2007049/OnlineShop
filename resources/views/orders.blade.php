@@ -19,6 +19,7 @@
     <tbody>
         @foreach($orders as $order)
         <tr>
+            <td>{{ $order->id }}</td>
             <td>{{ $order->ProductCode }}</td>
             <td>{{ $order->Email }}</td>
             <td>{{ $order->Address }}</td>
@@ -32,6 +33,13 @@
                 @endif
             </td>
             <td>{{ $order->DeliveryStatus }}</td>
+            </td>
+                <td><form action="{{ route('order.destroy', $order->id) }}" method="POST" style="display: inline-block;">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+                </td>
         </tr>
         @endforeach
     </tbody>

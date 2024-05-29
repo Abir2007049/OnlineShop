@@ -16,14 +16,14 @@ class ShowProdHome
      */
     public function handle(Request $request, Closure $next)
     {
-        // Validate incoming request data
+    
         $request->validate([
             'name' => 'required',
             'price' => 'required',
             'code' => 'required'
         ]);
 
-        // Proceed with the request
+    
         return $next($request);
     }
 }

@@ -15,11 +15,10 @@ Route::post('/order/delivered/{id}', [OrderController::class, 'markAsDelivered']
 })->name('home');
 
 Route::get('/', function () {
-    // Retrieve all products and female products from the database
+  
     $products = DB::table('products')->get();
     $femaleProducts = DB::table('femproducts')->get();
     
-    // Pass both sets of products to the view
     return view('homepage', compact('products', 'femaleProducts'));
 })->name('home');
 Route::get('/login', [AuthManager::class, 'login'])->name('login');
@@ -47,3 +46,9 @@ Route::get('/see-acc', [AuthManager::class, 'ShowUser'])->name('Show.Acc');
 
 Route::get('/search', [SearchController::class, 'index'])->name('search.index');
 Route::post('/search', [SearchController::class, 'search'])->name('search.perform');
+use App\Http\Controllers\ProductController;
+
+Route::delete('/products/{id}', [AuthManager::class, 'destroy'])->name('products.destroy');
+Route::delete('/femproducts/{id}', [AuthManager::class, 'destroyFem'])->name('femproducts.destroy');
+Route::delete('/orders/{id}', [OrderController::class, 'destroyOrder'])->name('order.destroy');
+

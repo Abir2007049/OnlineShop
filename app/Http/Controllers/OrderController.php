@@ -24,4 +24,12 @@ class OrderController extends Controller
         // Redirect back with a success message
         return redirect()->back()->with('status', 'Order marked as delivered.');
     }
+    public function destroyOrder($id)
+    {
+        $product=Order::findOrFail($id);
+        $product->delete();
+        return redirect()->route('see.order')->with('success', 'Order deleted successfully.');
+      
+    }
+
 }

@@ -29,7 +29,7 @@
         margin-bottom: 20px;
     }
 
-    /* Cards */
+    
     .card {
         background-color: rgb(18, 20, 129);
         color: #ffffff;
@@ -43,7 +43,7 @@
         transform: translateY(-5px);
     }
 
-    /* About and Contact Us Sections */
+    
     .section-container {
         background: rgb(255, 177, 177);
         padding: 20px;
@@ -57,7 +57,7 @@
         transform: scale(1.02);
     }
 
-    /* Footer */
+    
     footer {
         background-color: rgba(0, 0, 0, 0.5);
         color: white;

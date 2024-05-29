@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <h1>User Accounts:</h1>
-        <table class="table mt-4">
-            <thead>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <table class="table table-striped table-bordered">
+        <thead class="table-primary">q
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>

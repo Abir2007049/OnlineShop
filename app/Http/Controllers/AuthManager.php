@@ -181,28 +181,20 @@ class AuthManager extends Controller
     
     public function storeOrder(Request $request)
     {
-        // Retrieve data from the request
+        
         $productCode = $request->input('Code');
 $userEmail = $request->input('email');
 $address = $request->input('address');
-$del = null;  // Set delivery to null initially
 
-// Your further processing logic here
-
-        //$code= $request->input('Code');
-        // Find the user by email
-        //$user = User::where('email', $userEmail)->first();
     
-        // Create a new order
+
         $order = new Order();
         $order->ProductCode= $productCode;
         $order->Email = $userEmail;
-        $order->Address = $address; // Assuming you also want to store the product code
+        $order->Address = $address; 
         $order->DeliveryStatus='Not Delivered';
         $order->save();
     
-        // You might also want to return a response or redirect somewhere
-        //return redirect()->route('send.order')->with('success', 'Order placed successfully!');
         $products = Product::all();
         $femaleProducts = Femproduct::all();
         
@@ -220,6 +212,21 @@ $del = null;  // Set delivery to null initially
        $acc=User::all();
      
         return view('ShowAcc',compact('acc'));
+    }
+
+    public function destroy($id)
+    {
+        $product=Product::findOrFail($id);
+        $product->delete();
+        return redirect()->route('show.product')->with('success', 'Product deleted successfully.');
+      
+    }
+    public function destroyFem($id)
+    {
+        $product=Femproduct::findOrFail($id);
+        $product->delete();
+        return redirect()->route('show.femproduct')->with('success', 'Product deleted successfully.');
+      
     }
 
 

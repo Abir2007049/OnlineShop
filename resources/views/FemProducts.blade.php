@@ -27,10 +27,16 @@
                 <td>{{$user->Code}}</td>
                 <td>
                     @if($user->image)
-                        <img src="{{  $user->image }}" style="width:70px; height:70px;">
+                        <img src="{{  $user->Image }}" style="width:70px; height:70px;">
                     @else
                         <span>No Image</span>
                     @endif
+                </td>
+                <td><form action="{{ route('femproducts.destroy', $user->id) }}" method="POST" style="display: inline-block;">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
                 </td>
             </tr>
             @endforeach
