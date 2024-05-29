@@ -11,6 +11,7 @@
 <table class="table table-striped table-bordered">
     <thead class="table-primary">
         <tr>
+            <th scope="col">id</th>
             <th scope="col">ProductCode</th>
             <th scope="col">Email</th>
             <th scope="col">Address</th>
