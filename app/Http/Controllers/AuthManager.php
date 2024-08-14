@@ -71,7 +71,10 @@ class AuthManager extends Controller
             'name' => 'required',
             'price' => 'required',
             'code' => 'required',
+            'FibreType'=>'required',
+            'Size'=>'required',
             'image' => 'image'
+            
         ]);
 
         // if ($request->hasFile('image')) {
@@ -90,6 +93,8 @@ class AuthManager extends Controller
         $product->Name = $request->name;
         $product->Price = $request->price;
         $product->Code = $request->code;
+        $product->FibreType = $request->FibreType;
+        $product->Size = $request->Size;
         $product->image = $url ?? '';
 
         $product->save();
@@ -104,6 +109,9 @@ class AuthManager extends Controller
             'name' => 'required',
             'price' => 'required',
             'code' => 'required',
+            'FibreType'=>'required',
+            'Size'=>'required',
+
             'image' => 'required|mimes:png,jpg,jpeg'
         ]);
 
@@ -123,6 +131,8 @@ class AuthManager extends Controller
         $product->Name = $request->name;
         $product->Price = $request->price;
         $product->Code = $request->code;
+        $product->FibreType = $request->FibreType;
+        $product->Size = $request->Size;
         $product->image = $url ?? '';
 
         $product->save();
@@ -227,6 +237,30 @@ $address = $request->input('address');
         $product->delete();
         return redirect()->route('show.femproduct')->with('success', 'Product deleted successfully.');
       
+    }
+    public function ProductData($id)
+    {
+        $data=Product::find($id);
+        if (!$data) {
+            // Option 1: Return a 404 error page
+            abort(404, 'Product not found');
+    
+            // Option 2: Redirect with an error message (if you want to redirect)
+            // return redirect()->route('products.index')->with('error', 'Product not found.');
+        }
+        return view('ShowProductsData',compact('data'));
+    }
+    public function FemProductData($id)
+    {
+        $data=Femproduct::find($id);
+        if (!$data) {
+            // Option 1: Return a 404 error page
+            abort(404, 'Product not found');
+    
+            // Option 2: Redirect with an error message (if you want to redirect)
+            // return redirect()->route('products.index')->with('error', 'Product not found.');
+        }
+        return view('ShowFemProductsData',compact('data'));
     }
 
 

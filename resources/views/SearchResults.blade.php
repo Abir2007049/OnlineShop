@@ -4,8 +4,8 @@
 
 <style>
     body {
-        background-color: rgb(255, 234, 227);
-        color: black;
+        background-color: black;
+        color: white;
     }
 
     /* Navbar */
@@ -14,25 +14,25 @@
     }
 
     .navbar-nav .nav-link:hover {
-        color: #ffc107 !important;
+        color: #9400FF !important;
     }
 
     .navbar-nav .active > .nav-link {
-        color: #ffc107 !important;
+        color: #9400FF !important;
     }
 
     /* Forms */
     form {
-        background-color: rgb(255, 203, 203);
+        background-color: rgb(126, 48, 225);
         padding: 20px;
         border-radius: 10px;
         margin-bottom: 20px;
     }
 
-    /* Cards */
+    
     .card {
-        background-color: rgb(18, 20, 129);
-        color: #ffffff;
+        background-color:rgb(126, 48, 225);
+        color: white;
         padding: 15px;
         border-radius: 10px;
         margin-bottom: 20px;
@@ -41,20 +41,43 @@
 
     .card:hover {
         transform: translateY(-5px);
+        background-color: rgb(226, 110, 229);
     }
 
-    /* About and Contact Us Sections */
+    
     .section-container {
-        background: rgb(255, 177, 177);
+        background: rgb(126, 48, 225);
         padding: 20px;
+        color:white;
         border-radius: 10px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         transition: background-color 0.3s, transform 0.3s;
     }
 
     .section-container:hover {
-        background-color: rgb(255, 150, 150);
+        background-color: rgb(226, 110, 229);
         transform: scale(1.02);
+    }
+
+    
+    footer {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+        margin-top: 30px;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+    }
+
+    footer a {
+        color: #ffc107;
+        text-decoration: none;
+    }
+
+    footer a:hover {
+        text-decoration: underline;
     }
 </style>
 

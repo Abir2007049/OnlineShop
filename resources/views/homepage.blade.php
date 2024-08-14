@@ -4,8 +4,8 @@
 
 <style>
     body {
-        background-color: rgb(255, 234, 227);
-        color: black;
+        background-color: black;
+        color: white;
     }
 
     /* Navbar */
@@ -14,16 +14,16 @@
     }
 
     .navbar-nav .nav-link:hover {
-        color: #ffc107 !important;
+        color: #9400FF !important;
     }
 
     .navbar-nav .active > .nav-link {
-        color: #ffc107 !important;
+        color: #9400FF !important;
     }
 
     /* Forms */
     form {
-        background-color: rgb(255, 203, 203);
+        background-color: rgb(126, 48, 225);
         padding: 20px;
         border-radius: 10px;
         margin-bottom: 20px;
@@ -31,8 +31,8 @@
 
     
     .card {
-        background-color: rgb(18, 20, 129);
-        color: #ffffff;
+        background-color:rgb(126, 48, 225);
+        color: white;
         padding: 15px;
         border-radius: 10px;
         margin-bottom: 20px;
@@ -41,19 +41,21 @@
 
     .card:hover {
         transform: translateY(-5px);
+        background-color: rgb(226, 110, 229);
     }
 
     
     .section-container {
-        background: rgb(255, 177, 177);
+        background: rgb(126, 48, 225);
         padding: 20px;
+        color:white;
         border-radius: 10px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         transition: background-color 0.3s, transform 0.3s;
     }
 
     .section-container:hover {
-        background-color: rgb(255, 150, 150);
+        background-color: rgb(226, 110, 229);
         transform: scale(1.02);
     }
 
@@ -86,8 +88,8 @@
             aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <div class="collapse navbar-collapse" id="navbarText" >
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" style="color:white" href="#about">About</a>
                 </li>
@@ -120,9 +122,10 @@
     </div>
 </nav>
 
-<div style="text-align:center; color:rgb(18, 20, 129)">
+<div style="text-align:center; color:rgb(126, 48, 225); background-image: url('images/background.jpg'); background-size: cover; background-position: center; padding: 50px;">
     <h1>বস্ত্রগৃহ</h1>
 </div>
+
 
 <h1>Search</h1>
 <form action="{{ route('search.perform') }}" method="POST">
@@ -150,12 +153,15 @@
     <div class="row">
         @foreach($femaleProducts as $item)
             <div class="col-md-4">
+            <a href="{{ route('fproduct.data', $item->id) }}" class="card-link">
                 <div class="card">
+                
                     <h6>{{$item->Name}}</h6>
                     <img src="{{ asset($item->Image) }}" alt="{{ $item->Name }}">
                     <p>Price:{{$item->Price}}</p>
                     <p>Code:{{$item->Code}}</p>
                 </div>
+            </a>    
             </div>
         @endforeach
     </div>
@@ -168,12 +174,14 @@
     <div class="row">
         @foreach($products as $item)
             <div class="col-md-4">
+            <a href="{{ route('product.data', $item->id) }}" class="card-link">
                 <div class="card">
                     <h6>{{$item->Name}}</h6>
                     <img src="{{ $item->Image }}" alt="{{ $item->Name }}">
                     <p>Price:{{$item->Price}}</p>
                     <p>Code:{{$item->Code}}</p>
                 </div>
+            </a>
             </div>
         @endforeach
     </div>

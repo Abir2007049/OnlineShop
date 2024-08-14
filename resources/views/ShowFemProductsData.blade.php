@@ -45,7 +45,7 @@
     <div class="card">
         <div class="card-title">Product Details</div>
         <p><strong>Fabric Type:</strong> {{ $data->FibreType }}</p>
-        <p><strong>Size Available:</strong> {{ $data->Size }}</p>
+        <p><strong>Sizes Available:</strong> {{ $data->Size }}</p>
     </div>
 
 </body>

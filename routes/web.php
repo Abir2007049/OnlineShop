@@ -51,4 +51,6 @@ use App\Http\Controllers\ProductController;
 Route::delete('/products/{id}', [AuthManager::class, 'destroy'])->name('products.destroy');
 Route::delete('/femproducts/{id}', [AuthManager::class, 'destroyFem'])->name('femproducts.destroy');
 Route::delete('/orders/{id}', [OrderController::class, 'destroyOrder'])->name('order.destroy');
+Route::get('/products/{id}', [AuthManager::class, 'ProductData'])->name('product.data');
+Route::get('/fproducts/{id}', [AuthManager::class, 'FemProductData'])->name('fproduct.data');
 

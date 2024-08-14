@@ -17,6 +17,8 @@ return new class extends Migration
             $table->integer('Price');
             $table->string('Code');
             $table->timestamps();
+            $table->string('FibreType');
+            $table->string('Size');
 
         });
     }

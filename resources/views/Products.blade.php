@@ -15,6 +15,8 @@
                 <th scope="col">Name</th>
                 <th scope="col">Price</th>
                 <th scope="col">Code</th>
+                <th scope="col">Fibre Type</th>
+                <th scope="col">Size</th>qqq
                 <th scope="col">image</th>
             </tr>
         </thead>
@@ -25,6 +27,9 @@
                 <td>{{$user->Name}}</td>
                 <td>{{$user->Price}}</td>
                 <td>{{$user->Code}}</td>
+                <td>{{$user->FibreType}}</td>
+                <td>{{$user->Size}}</td>
+                
                 <td>
                     @if($user->image)
                         <img src="{{  $user->Image }}" style="width:70px; height:70px;">
