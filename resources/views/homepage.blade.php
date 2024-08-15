@@ -23,7 +23,7 @@
 
     /* Forms */
     form {
-        background-color: rgb(126, 48, 225);
+        background-color: ;
         padding: 20px;
         border-radius: 10px;
         margin-bottom: 20px;
@@ -121,9 +121,9 @@
         </div>
     </div>
 </nav>
-
-<div style="text-align:center; color:rgb(126, 48, 225); background-image: url('images/background.jpg'); background-size: cover; background-position: center; padding: 50px;">
-    <h1>বস্ত্রগৃহ</h1>
+<h1 style="text-align:center;color:rgb(126, 48, 225)">বস্ত্রগৃহ</h1>
+<div style="text-align:center; color:rgb(126, 48, 225); background-image: url('{{ asset('storage/female/shop.jpg') }}'); background-size: cover; background-position: center; padding: 200px;">
+    <!-- <h1>বস্ত্রগৃহ</h1> -->
 </div>
 
 

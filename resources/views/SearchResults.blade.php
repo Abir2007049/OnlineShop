@@ -23,7 +23,7 @@
 
     /* Forms */
     form {
-        background-color: rgb(126, 48, 225);
+        background-color: ;
         padding: 20px;
         border-radius: 10px;
         margin-bottom: 20px;
@@ -83,22 +83,22 @@
 
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-        <a class="navbar-brand" style=" color:white" href="#">Home</a>
+        <a class="navbar-brand" style="color:white" href="#">Home</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
             aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <div class="collapse navbar-collapse" id="navbarText" >
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" style=" color:white" href="#about">About</a>
+                    <a class="nav-link active" aria-current="page" style="color:white" href="#about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style=" color:white" href="#contact">Contact</a>
+                    <a class="nav-link" style="color:white" href="#contact">Contact</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" style=" color:white" aria-expanded="false">
+                        data-bs-toggle="dropdown" style="color:white" aria-expanded="false">
                         Products
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -114,17 +114,18 @@
                     <span class="mx-2">|</span>
                     <a class="nav-link" href="{{ route('registration') }}" style="color:violet">Register</a>
                     @else
-                    <a class="nav-link" href="{{ route('logout') }}" style="color:red"><b>Logout</a>
+                    <a class="nav-link" href="{{ route('logout') }}" style="color:red"><b>Logout</b></a>
                     @endguest
                 </div>
             </span>
         </div>
     </div>
 </nav>
-
-<div style="text-align:center; color:rgb(18, 20, 129)">
-    <h1>বস্ত্রগৃহ</h1>
+<h1 style="text-align:center;color:rgb(126, 48, 225)">বস্ত্রগৃহ</h1>
+<div style="text-align:center; color:rgb(126, 48, 225); background-image: url('{{ asset('storage/female/shop.jpg') }}'); background-size: cover; background-position: center; padding: 200px;">
+    <!-- <h1>বস্ত্রগৃহ</h1> -->
 </div>
+
 
 <h1>Search</h1>
 <form action="{{ route('search.perform') }}" method="POST">
@@ -145,7 +146,7 @@
         <p>Code:</p><input name="Code">
         <button type="submit" class="btn btn-primary">Place Order</button>
     </form>
-@endguest        
+@endguest         
 
   
 
