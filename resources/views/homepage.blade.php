@@ -14,11 +14,11 @@
     }
 
     .navbar-nav .nav-link:hover {
-        color: #9400FF !important;
+        color: rgb(195, 10, 246) !important;
     }
 
     .navbar-nav .active > .nav-link {
-        color: #9400FF !important;
+        color: rgb(195, 10, 246) !important;
     }
 
     /* Forms */
@@ -31,7 +31,7 @@
 
     
     .card {
-        background-color:rgb(126, 48, 225);
+        background-color:rgb(195, 10, 246);
         color: white;
         padding: 15px;
         border-radius: 10px;
@@ -41,12 +41,12 @@
 
     .card:hover {
         transform: translateY(-5px);
-        background-color: rgb(226, 110, 229);
+        background-color:rgb(79, 23, 135) ;
     }
 
     
     .section-container {
-        background: rgb(126, 48, 225);
+        background: rgb(195, 10, 246);
         padding: 20px;
         color:white;
         border-radius: 10px;
@@ -55,7 +55,7 @@
     }
 
     .section-container:hover {
-        background-color: rgb(226, 110, 229);
+        background-color: rgb(79, 23, 135);
         transform: scale(1.02);
     }
 
@@ -121,8 +121,8 @@
         </div>
     </div>
 </nav>
-<h1 style="text-align:center;color:rgb(126, 48, 225)">বস্ত্রগৃহ</h1>
-<div style="text-align:center; color:rgb(126, 48, 225); background-image: url('{{ asset('storage/female/shop.jpg') }}'); background-size: cover; background-position: center; padding: 200px;">
+<h1 style="text-align:center;color:rgb(195, 10, 246)">বস্ত্রগৃহ</h1>
+<div style="text-align:center; color:rgb(195, 10, 246); background-image: url('{{ asset('storage/female/shop.jpg') }}'); background-size: cover; background-position: center; padding: 200px;">
     <!-- <h1>বস্ত্রগৃহ</h1> -->
 </div>
 
