@@ -23,13 +23,11 @@
 
     /* Forms */
     form {
-        background-color: ;
         padding: 20px;
         border-radius: 10px;
         margin-bottom: 20px;
     }
 
-    
     .card {
         background-color:rgb(195, 10, 246);
         color: white;
@@ -41,14 +39,13 @@
 
     .card:hover {
         transform: translateY(-5px);
-        background-color:rgb(79, 23, 135) ;
+        background-color:rgb(79, 23, 135);
     }
 
-    
     .section-container {
         background: rgb(195, 10, 246);
         padding: 20px;
-        color:white;
+        color: white;
         border-radius: 10px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         transition: background-color 0.3s, transform 0.3s;
@@ -59,7 +56,6 @@
         transform: scale(1.02);
     }
 
-    
     footer {
         background-color: rgba(0, 0, 0, 0.5);
         color: white;
@@ -79,7 +75,24 @@
     footer a:hover {
         text-decoration: underline;
     }
+
+    .add-to-cart-btn {
+        background-color: black;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        margin-top: 10px;
+    }
+
+    .add-to-cart-btn:hover {
+        background-color: blue;
+    }
 </style>
+
 
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
@@ -121,11 +134,11 @@
         </div>
     </div>
 </nav>
-<h1 style="text-align:center;color:rgb(195, 10, 246)">বস্ত্রগৃহ</h1>
-<div style="text-align:center; color:rgb(195, 10, 246); background-image: url('{{ asset('storage/female/shop.jpg') }}'); background-size: cover; background-position: center; padding: 200px;">
-    <!-- <h1>বস্ত্রগৃহ</h1> -->
-</div>
 
+<h1 style="text-align:center;color:rgb(195, 10, 246)">বস্ত্রগৃহ</h1>
+
+<div style="text-align:center; color:rgb(195, 10, 246); background-image: url('{{ asset('storage/female/shop.jpg') }}'); background-size: cover; background-position: center; padding: 200px;">
+</div>
 
 <h1>Search</h1>
 <form action="{{ route('search.perform') }}" method="POST">
@@ -135,33 +148,26 @@
 </form>
 
 <br><br><br>
-@guest
-    <p><b>Login to order</b></p>
-@else
-    <h6>Fill up to order:</h6>
-    <form action="{{ route('send.order') }}" method="POST">
-        @csrf
-        <p>Address:</p><input name="address">
-        <p>Email:</p><input name="email">
-        <p>Code:</p><input name="Code">
-        <button type="submit" class="btn btn-primary">Place Order</button>
-    </form>
-@endguest        
 
 <div id="female-section" class="section">
     <h4>Female Section</h4>
     <div class="row">
         @foreach($femaleProducts as $item)
             <div class="col-md-4">
-            <a href="{{ route('fproduct.data', $item->id) }}" class="card-link">
-                <div class="card">
-                
-                    <h6>{{$item->Name}}</h6>
-                    <img src="{{ asset($item->Image) }}" alt="{{ $item->Name }}">
-                    <p>Price:{{$item->Price}}</p>
-                    <p>Code:{{$item->Code}}</p>
-                </div>
-            </a>    
+                <a href="{{ route('fproduct.data', $item->id) }}" class="card-link">
+                    <div class="card">
+                        <h6>{{$item->Name}}</h6>
+                        <img src="{{ asset($item->Image) }}" alt="{{ $item->Name }}">
+                        <p>Price: {{$item->Price}}</p>
+                        <p>Code: {{$item->Code}}</p>
+                        <form action="{{ route('send.forder', ['code' => $item->Code]) }}" method="POST">
+
+    @csrf
+    <button type="submit" class="add-to-cart-btn"> <img src="{{ asset('storage/logo/cart.jpg') }}" alt="Cart" style="height: 20px; margin-right: 5px;">Add to Cart</button>
+</form>
+
+                    </div>
+                </a>
             </div>
         @endforeach
     </div>
@@ -174,14 +180,19 @@
     <div class="row">
         @foreach($products as $item)
             <div class="col-md-4">
-            <a href="{{ route('product.data', $item->id) }}" class="card-link">
-                <div class="card">
-                    <h6>{{$item->Name}}</h6>
-                    <img src="{{ $item->Image }}" alt="{{ $item->Name }}">
-                    <p>Price:{{$item->Price}}</p>
-                    <p>Code:{{$item->Code}}</p>
-                </div>
-            </a>
+                <a href="{{ route('product.data', $item->id) }}" class="card-link">
+                    <div class="card">
+                        <h6>{{$item->Name}}</h6>
+                        <img src="{{ asset($item->Image) }}" alt="{{ $item->Name }}">
+                        <p>Price: {{$item->Price}}</p>
+                        <p>Code: {{$item->Code}}</p>
+                        <form action="{{ route('send.order', ['code' => $item->Code]) }}" method="POST">
+    @csrf
+    <button type="submit" class="add-to-cart-btn"> <img src="{{ asset('storage/logo/cart.jpg') }}" alt="Cart" style="height: 20px; margin-right: 5px;">Add to Cart</button>
+</form>
+
+                    </div>
+                </a>
             </div>
         @endforeach
     </div>
@@ -211,9 +222,5 @@
 <footer>
     <p>&copy; 2024 Bostro Griho(Abir-49,KUET CSE). All Rights Reserved.</p>
 </footer>
-
-<script>
-    
-</script>
 
 @endsection

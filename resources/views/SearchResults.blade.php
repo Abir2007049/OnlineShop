@@ -135,18 +135,7 @@
 </form>
 
 <br><br><br>
-@guest
-    <p><b>Login to order</b></p>
-@else
-    <h6>Fill up to order:</h6>
-    <form action="{{ route('send.order') }}" method="POST">
-        @csrf
-        <p>Address:</p><input name="address">
-        <p>Email:</p><input name="email">
-        <p>Code:</p><input name="Code">
-        <button type="submit" class="btn btn-primary">Place Order</button>
-    </form>
-@endguest         
+
 
   
 

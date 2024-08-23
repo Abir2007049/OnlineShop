@@ -23,7 +23,8 @@ class Isadmin
     {    
         $request->validate([
             'email' => 'required',
-            'password' => 'required'
+            'password' => 'required',
+            
         ]);
 
         $credentials = $request->only('email','password');

@@ -14,16 +14,18 @@
             <th scope="col">id</th>
             <th scope="col">ProductCode</th>
             <th scope="col">Email</th>
-            <th scope="col">Address</th>
+            <th scope="col">Cell</th>
+            
         </tr>
     </thead>
     <tbody>
         @foreach($orders as $order)
         <tr>
             <td>{{ $order->id }}</td>
-            <td>{{ $order->ProductCode }}</td>
+            <td>{{ $order->Code }}</td>
             <td>{{ $order->Email }}</td>
-            <td>{{ $order->Address }}</td>
+            <td>{{ $order->Cell }}</td>
+            
             <td>
                
                 @if($order->delivery !== 'delivered')

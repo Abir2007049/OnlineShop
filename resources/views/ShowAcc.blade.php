@@ -14,6 +14,7 @@
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Cell</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,6 +24,7 @@
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
+                            <td>{{ $user->cell}}</td>
                         </tr>
                     @endif
                 @endforeach

@@ -48,6 +48,7 @@ class AuthManager extends Controller
         $data['name'] = $request->name;
         $data['email'] = $request->email;
         $data['password'] = Hash::make($request->password);
+        $data['cell'] = $request->cell;
         $user = User::create($data);
         if (!$user) {
             return redirect(route('registration'))->with("error", "Try Again!");
@@ -189,27 +190,40 @@ class AuthManager extends Controller
         return view('homepage', compact('products', 'femaleProducts'));
     }
     
-    public function storeOrder(Request $request)
+    public function storeOrder($code)
     {
-        
-        $productCode = $request->input('Code');
-$userEmail = $request->input('email');
-$address = $request->input('address');
-
+        $product = Product::where('Code', $code)->first();
     
-
+    
+        if (!$product) {
+            return redirect()->back()->withErrors(['Product not found.']);
+        }
+    
+        $user = Auth::user();
+    
+        if (!$user) {
+            return redirect()->route('login')->withErrors(['Please login to place an order.']);
+        }
+    
+        if (is_null($user->cell)) {
+            return redirect()->back()->withErrors(['Cell number is required to place an order.']);
+        }
+    
         $order = new Order();
-        $order->ProductCode= $productCode;
-        $order->Email = $userEmail;
-        $order->Address = $address; 
-        $order->DeliveryStatus='Not Delivered';
+        $order->Code = $product->Code;
+        $order->Email = $user->email;
+        $order->Cell = $user->cell;
+        $order->DeliveryStatus = 'Not Delivered';
         $order->save();
     
         $products = Product::all();
         $femaleProducts = Femproduct::all();
-        
-        return view('homepage',compact('products','femaleProducts'));
+    
+        return view('homepage', compact('products', 'femaleProducts'))->with('success', 'Product added to cart successfully!');
     }
+    
+    
+
     function showOrder()
     {
         $orders=Order::all();
@@ -223,6 +237,39 @@ $address = $request->input('address');
      
         return view('ShowAcc',compact('acc'));
     }
+    public function storeFemOrder($code)
+    {
+        $product = Femproduct::where('Code', $code)->first();
+    
+    
+        if (!$product) {
+            return redirect()->back()->withErrors(['Product not found.']);
+        }
+    
+        $user = Auth::user();
+    
+        if (!$user) {
+            return redirect()->route('login')->withErrors(['Please login to place an order.']);
+        }
+    
+        if (is_null($user->cell)) {
+            return redirect()->back()->withErrors(['Cell number is required to place an order.']);
+        }
+    
+        $order = new Order();
+        $order->Code = $product->Code;
+        $order->Email = $user->email;
+        $order->Cell = $user->cell;
+        $order->DeliveryStatus = 'Not Delivered';
+        $order->save();
+    
+        $products = Product::all();
+        $femaleProducts = Femproduct::all();
+    
+        return view('homepage', compact('products', 'femaleProducts'))->with('success', 'Product added to cart successfully!');
+    }
+
+
 
     public function destroy($id)
     {

@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-    protected $fillable = ['Email','ProductCode','Address','DeliveryStatus'];
+    protected $fillable = ['Email','Code','Cell','DeliveryStatus'];
 }

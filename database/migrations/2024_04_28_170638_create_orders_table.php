@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('Email');
-            $table->integer('ProductCode');
+            $table->integer('Code');
           
-            $table->string('Address');
+            $table->string('Cell')->nullable();
             $table->string('DeliveryStatus');
             $table->timestamps();
             
