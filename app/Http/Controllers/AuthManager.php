@@ -191,45 +191,45 @@ class AuthManager extends Controller
     }
     
     public function storeOrder($code)
-    {
-        $product = Product::where('Code', $code)->first();
-    
-    
-        if (!$product) {
-            return redirect()->back()->withErrors(['Product not found.']);
-        }
-    
-        $user = Auth::user();
-    
-        if (!$user) {
-            return redirect()->route('login')->withErrors(['Please login to place an order.']);
-        }
-    
-        if (is_null($user->cell)) {
-            return redirect()->back()->withErrors(['Cell number is required to place an order.']);
-        }
-    
-        $order = new Order();
-        $order->Code = $product->Code;
-        $order->Email = $user->email;
-        $order->Cell = $user->cell;
-        $order->DeliveryStatus = 'Not Delivered';
-        $order->save();
-    
-        $products = Product::all();
-        $femaleProducts = Femproduct::all();
-    
-        return view('homepage', compact('products', 'femaleProducts'))->with('success', 'Product added to cart successfully!');
-    }
-    
-    
+{
+    $product = Product::where('Code', $code)->first();
 
-    function showOrder()
-    {
-        $orders=Order::all();
-        return view('orders',compact('orders'));
-
+    if (!$product) {
+        return redirect()->back()->withErrors(['Product not found.']);
     }
+
+    $user = Auth::user();
+
+    if (!$user) {
+        return redirect()->route('login')->withErrors(['Please login to place an order.']);
+    }
+
+    if (is_null($user->cell)) {
+        return redirect()->back()->withErrors(['Cell number is required to place an order.']);
+    }
+
+    // ✅ Add to session cart
+    $cart = session()->get('cart', []);
+$cart[] = [
+    'Name' => $product->Name,
+    'Code' => $product->Code,
+    'Price' => $product->Price,
+    // You can add 'Image' => $product->Image, etc.
+];
+session()->put('cart', $cart);
+
+
+    // ✅ Optionally save to DB if you want a persistent log
+    $order = new Order();
+    $order->Code = $product->Code;
+    $order->Email = $user->email;
+    $order->Cell = $user->cell;
+    $order->DeliveryStatus = 'Not Delivered';
+    $order->save();
+
+    // ✅ Redirect back to homepage to see cart
+    return redirect()->route('home')->with('success', 'Product added to cart successfully!');
+}
 
     public function ShowUser(Request $request)
     {
@@ -238,36 +238,46 @@ class AuthManager extends Controller
         return view('ShowAcc',compact('acc'));
     }
     public function storeFemOrder($code)
-    {
-        $product = Femproduct::where('Code', $code)->first();
-    
-    
-        if (!$product) {
-            return redirect()->back()->withErrors(['Product not found.']);
-        }
-    
-        $user = Auth::user();
-    
-        if (!$user) {
-            return redirect()->route('login')->withErrors(['Please login to place an order.']);
-        }
-    
-        if (is_null($user->cell)) {
-            return redirect()->back()->withErrors(['Cell number is required to place an order.']);
-        }
-    
-        $order = new Order();
-        $order->Code = $product->Code;
-        $order->Email = $user->email;
-        $order->Cell = $user->cell;
-        $order->DeliveryStatus = 'Not Delivered';
-        $order->save();
-    
-        $products = Product::all();
-        $femaleProducts = Femproduct::all();
-    
-        return view('homepage', compact('products', 'femaleProducts'))->with('success', 'Product added to cart successfully!');
+{
+    $product = Femproduct::where('Code', $code)->first();
+
+    if (!$product) {
+        return redirect()->back()->withErrors(['Product not found.']);
     }
+
+    $user = Auth::user();
+
+    if (!$user) {
+        return redirect()->route('login')->withErrors(['Please login to place an order.']);
+    }
+
+    if (is_null($user->cell)) {
+        return redirect()->back()->withErrors(['Cell number is required to place an order.']);
+    }
+
+    // ✅ Add to session cart
+    $cart = session()->get('cart', []);
+$cart[] = [
+    'Name' => $product->Name,
+    'Code' => $product->Code,
+    'Price' => $product->Price,
+    // You can add 'Image' => $product->Image, etc.
+];
+session()->put('cart', $cart);
+
+
+    // ✅ Optionally save to DB
+    $order = new Order();
+    $order->Code = $product->Code;
+    $order->Email = $user->email;
+    $order->Cell = $user->cell;
+    $order->DeliveryStatus = 'Not Delivered';
+    $order->save();
+
+    // ✅ Redirect to home with success
+    return redirect()->route('home')->with('success', 'Product added to cart successfully!');
+}
+
 
 
 
@@ -310,6 +320,59 @@ class AuthManager extends Controller
         return view('ShowFemProductsData',compact('data'));
     }
 
+   function showOrder()
+    {
+        $orders=Order::all();
+        return view('orders',compact('orders'));
+
+    }
+
+
+
+// public function home()
+//     {
+//         $femaleProducts = Femproduct::all();
+//         $products = Product::all();
+//         $cart = session()->get('cart', []);
+
+//         return view('home', compact('femaleProducts', 'products', 'cart'));
+//     }
+//     public function addToCart(Request $request, $code)
+// {
+//     $product = Product::where('Code', $code)->first();
+
+//     if (!$product) {
+//         return redirect()->back()->with('error', 'Product not found');
+//     }
+
+//     $cart = session()->get('cart', []);
+    
+//     $cart[$code] = [
+//         'name' => $product->Name,
+//         'price' => $product->Price,
+//         'image' => $product->Image
+//     ];
+
+//     session()->put('cart', $cart);
+
+//     return redirect()->back()->with('success', 'Product added to cart');
+// }
+public function remove($code)
+{
+    $cart = session()->get('cart', []);
+
+    if (isset($cart[$code])) {
+        unset($cart[$code]);
+        session()->put('cart', $cart);
+    }
+
+    return redirect()->back()->with('success', 'Item removed from cart');
+}
+public function show()
+    {
+        $cart = session('cart', []); // Retrieve cart from session
+        return view('cart', compact('cart'));
+    }
 
 
     

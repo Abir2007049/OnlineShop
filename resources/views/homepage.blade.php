@@ -8,7 +8,6 @@
         color: white;
     }
 
-    /* Navbar */
     .navbar {
         background-color: rgba(0, 0, 0, 0.5);
     }
@@ -21,7 +20,6 @@
         color: rgb(195, 10, 246) !important;
     }
 
-    /* Forms */
     form {
         padding: 20px;
         border-radius: 10px;
@@ -91,8 +89,11 @@
     .add-to-cart-btn:hover {
         background-color: blue;
     }
-</style>
 
+    .badge {
+        font-size: 0.75rem;
+    }
+</style>
 
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
@@ -101,8 +102,8 @@
             aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarText" >
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" style="color:white" href="#about">About</a>
                 </li>
@@ -122,12 +123,23 @@
             </ul>
             <span class="navbar-text">
                 <div class="d-flex align-items-center">
+                    {{-- Cart Icon --}}
+                    @php $cartCount = session('cart') ? count(session('cart')) : 0; @endphp
+                    <a href="{{ route('cart.show') }}" class="nav-link position-relative" style="color:violet">
+
+                        <img src="{{ asset('storage/logo/cart.jpg') }}" alt="Cart" style="height: 25px;">
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {{ $cartCount }}
+                        </span>
+                    </a>
+
+                    {{-- Auth Links --}}
                     @guest
-                    <a class="nav-link" href="{{ route('login') }}" style="color:violet">Login</a>
-                    <span class="mx-2">|</span>
-                    <a class="nav-link" href="{{ route('registration') }}" style="color:violet">Register</a>
+                        <a class="nav-link" href="{{ route('login') }}" style="color:violet">Login</a>
+                        <span class="mx-2">|</span>
+                        <a class="nav-link" href="{{ route('registration') }}" style="color:violet">Register</a>
                     @else
-                    <a class="nav-link" href="{{ route('logout') }}" style="color:red"><b>Logout</b></a>
+                        <a class="nav-link" href="{{ route('logout') }}" style="color:red"><b>Logout</b></a>
                     @endguest
                 </div>
             </span>
@@ -161,11 +173,11 @@
                         <p>Price: {{$item->Price}}</p>
                         <p>Code: {{$item->Code}}</p>
                         <form action="{{ route('send.forder', ['code' => $item->Code]) }}" method="POST">
-
-    @csrf
-    <button type="submit" class="add-to-cart-btn"> <img src="{{ asset('storage/logo/cart.jpg') }}" alt="Cart" style="height: 20px; margin-right: 5px;">Add to Cart</button>
-</form>
-
+                            @csrf
+                            <button type="submit" class="add-to-cart-btn">
+                                <img src="{{ asset('storage/logo/cart.jpg') }}" alt="Cart" style="height: 20px; margin-right: 5px;">Add to Cart
+                            </button>
+                        </form>
                     </div>
                 </a>
             </div>
@@ -187,16 +199,19 @@
                         <p>Price: {{$item->Price}}</p>
                         <p>Code: {{$item->Code}}</p>
                         <form action="{{ route('send.order', ['code' => $item->Code]) }}" method="POST">
-    @csrf
-    <button type="submit" class="add-to-cart-btn"> <img src="{{ asset('storage/logo/cart.jpg') }}" alt="Cart" style="height: 20px; margin-right: 5px;">Add to Cart</button>
-</form>
-
+                            @csrf
+                            <button type="submit" class="add-to-cart-btn">
+                                <img src="{{ asset('storage/logo/cart.jpg') }}" alt="Cart" style="height: 20px; margin-right: 5px;">Add to Cart
+                            </button>
+                        </form>
                     </div>
                 </a>
             </div>
         @endforeach
     </div>
 </div>
+
+
 
 <div id="about" class="container mt-5 section-container">
     <h3>About Us</h3>
